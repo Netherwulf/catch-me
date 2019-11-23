@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <a (click)="onSelectIndexPage()">Catch Me!</a>
+  <ng-template [ngIf]="authService.isAuthenticated()">
+    <button id="account-button" mat-button (click)="onSelectMyAccount()">Moje Konto</button>
+    <button mat-button (click)="onSelectChapters()">Rozdziały</button>
+  </ng-template>
+  <span style="flex: 1 1 auto;"></span>
+  <ng-template [ngIf]="!authService.isAuthenticated()">
+    <button mat-button (click)="onSelectSignIn()">Zaloguj się</button>
+    <button mat-flat-button (click)="onSelectSignUp()">Zarejestruj się</button>
+  </ng-template>
+  <button mat-button *ngIf="authService.isAuthenticated()" (click)="onLogOut()">Wyloguj się</button>
+</mat-toolbar>
