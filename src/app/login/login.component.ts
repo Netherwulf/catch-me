@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth/auth.service'
+import {AuthService} from '../auth/auth.service';
 import {Router, Params} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,34 +11,50 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  errorMessage: string = '';
+  errorMessage = '';
+  successMessage = '';
+  hide = true;
 
   constructor(
     public authService: AuthService,
     private router: Router,
     private fb: FormBuilder
-  ) {
-    this.createForm();
+  ) {}
+
+  email = new FormControl(null, [Validators.required, Validators.email]);
+  password = new FormControl(null, [Validators.required]);
+
+  getEmailErrorMessage() {
+    return this.email.hasError('required') ? 'Pole wymagane' :
+      this.email.hasError('email') ? 'Błędny e-mail' : '';
   }
 
-  createForm() {
-    this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+  getPasswordErrorMessage() {
+    return this.password.hasError('required') ? 'Pole wymagane' : '';
   }
 
-  tryLogin(value) {
-    this.authService.doLogin(value)
+  tryLogin() {
+    const createdFirebaseUser = {
+      email: this.email.value,
+      password: this.password.value
+    };
+    this.authService.doLogin(createdFirebaseUser)
       .then(res => {
+        this.errorMessage = '';
+        this.successMessage = 'Konto zostało utworzone pomyślnie';
+        this.router.navigate(['/user']);
         this.router.navigate(['/user']);
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
-      })
+      });
   }
 
   ngOnInit(): void {
+  }
+
+  redirectToRegisterScreen() {
+    this.router.navigate(['/register']);
   }
 
 }

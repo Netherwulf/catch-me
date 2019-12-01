@@ -4,14 +4,12 @@ export class UserDataModel {
   name: string;
   surname: string;
   phoneNumber: string;
-  provider: string;
 
   constructor() {
-    this.email = "";
-    this.password = "";
-    this.name = "";
-    this.surname = "";
-    this.phoneNumber = "";
-    this.provider = "";
+    this.email = '';
+    this.password = '';
+    this.name = '';
+    this.surname = '';
+    this.phoneNumber = '';
   }
 }

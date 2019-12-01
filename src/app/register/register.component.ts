@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {AuthService} from '../auth/auth.service'
+import {AuthService} from '../auth/auth.service';
 import {Router, Params} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {FirebaseUserModel} from '../shared/user.model'
+import {FirebaseUserModel} from '../shared/user.model';
+import {UserService} from '../users/user.service';
 
 @Component({
   selector: 'app-register',
@@ -12,12 +13,13 @@ import {FirebaseUserModel} from '../shared/user.model'
 export class RegisterComponent {
 
   registerForm: FormGroup;
-  errorMessage: string = '';
-  successMessage: string = '';
+  errorMessage = '';
+  successMessage = '';
   hide = true;
 
   constructor(
     public authService: AuthService,
+    public userService: UserService,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -66,9 +68,16 @@ export class RegisterComponent {
   // }
 
   tryRegister() {
-    let createdFirebaseUser = {
+    const createdFirebaseUser = {
       email: this.email.value,
       password: this.password.value
+    };
+    const createdUserData = {
+      email: this.email.value,
+      password: this.password.value,
+      name: this.name.value,
+      surname: this.surname.value,
+      phoneNumber: this.phoneNumber.value
     };
     // createdUser.name = this.name.value;
     // createdUser.surname = this.surname.value;
@@ -76,18 +85,19 @@ export class RegisterComponent {
     this.authService.doRegister(createdFirebaseUser)
       .then(res => {
         console.log(res);
-        this.errorMessage = "";
-        this.successMessage = "Konto zostało utworzone pomyślnie";
-        this.router.navigate(['/user'])
+        this.userService.createUser(createdUserData);
+        this.errorMessage = '';
+        this.successMessage = 'Konto zostało utworzone pomyślnie';
+        this.router.navigate(['/user']);
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
-        this.successMessage = "";
-      })
+        this.successMessage = '';
+      });
   }
 
   redirectToLoginScreen() {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
 }

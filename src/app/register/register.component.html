@@ -42,8 +42,12 @@
                                                           || !email.valid
                                                           || !phoneNumber.valid">Zarejestruj się
     </button>
-    <label class="error">{{errorMessage}}</label>
-    <label class="success">{{successMessage}}</label>
+    <div class="row" style="text-align: center">
+      <div class="col-md-4 col-md-offset-4">
+        <label class="error">{{errorMessage}}</label>
+        <label class="success">{{successMessage}}</label>
+      </div>
+    </div>
   </mat-card-actions>
   <div class="row" style="text-align: center">
     <div class="col-md-4 col-md-offset-4">
@@ -51,30 +55,3 @@
     </div>
   </div>
 </mat-card>
-
-
-<!--<h1 class="header">Create an account</h1>-->
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    <div class="col-md-6 col-md-offset-3">-->
-<!--      <form [formGroup]="registerForm">-->
-<!--        <div class="form-group">-->
-<!--          <label>Email address</label>-->
-<!--          <input type="email" formControlName="email" class="form-control">-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--          <label>Password</label>-->
-<!--          <input type="password" class="form-control" formControlName="password">-->
-<!--          <label class="error">{{errorMessage}}</label>-->
-<!--          <label class="success">{{successMessage}}</label>-->
-<!--        </div>-->
-<!--        <button type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>-->
-<!--      </form>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="row">-->
-<!--    <div class="col-md-4 col-md-offset-4">-->
-<!--      <p>Already have an account? <a href="/login">Login</a></p>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
