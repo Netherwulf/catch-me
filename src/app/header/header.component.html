@@ -1,8 +1,10 @@
 <mat-toolbar color="primary">
+
+  <button mat-button *ngIf="authService.isAuthenticated()" (click)="sidenav.toggle()">sidenav.toggle()</button>
   <a (click)="onSelectIndexPage()">Catch Me!</a>
   <ng-template [ngIf]="authService.isAuthenticated()">
-    <button id="account-button" mat-button (click)="onSelectMyAccount()">Moje Konto</button>
-    <button mat-button (click)="onSelectChapters()">Rozdziały</button>
+<!--    <button id="account-button" mat-button (click)="onSelectMyAccount()">Moje Konto</button>-->
+<!--    <button mat-button (click)="onSelectChapters()">Rozdziały</button>-->
   </ng-template>
   <span style="flex: 1 1 auto;"></span>
   <ng-template [ngIf]="!authService.isAuthenticated()">
@@ -11,3 +13,6 @@
   </ng-template>
   <button mat-button *ngIf="authService.isAuthenticated()" (click)="onLogOut()">Wyloguj się</button>
 </mat-toolbar>
+<mat-sidenav #sidenav mode="side" [(opened)]="opened">
+  Sidenav content
+</mat-sidenav>
