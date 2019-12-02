@@ -3,19 +3,42 @@ import 'rxjs/add/operator/toPromise';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
-import {AngularFireDatabase, AngularFireObject} from '@angular/fire/database';
-import {Observable} from 'rxjs';
+import {AngularFireAction, AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+import {UserDataModel} from '../shared/user-data.model';
 
 @Injectable()
 export class UserService {
 
   userRef: AngularFireObject<any>;
-  user: Observable<any>;
+  usersRef: AngularFireList<UserDataModel> = null;
+  // users: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+  users: Observable<any[]>;
+  email: BehaviorSubject<string|null>;
 
   constructor(
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth) {
-    this.user = this.userRef.valueChanges();
+    this.usersRef = db.list('/users');
+  }
+
+  // getUsersByEmail(email: string|null) {
+  //   return this.email.next(email);
+  //   // return this.users;
+  // }
+
+  // getUserByEmail(email) {
+  //   this.users = this.db.list('items');
+  //   return this.users;
+  // }
+
+  // getUsersList(): AngularFireList<UserDataModel> {
+  //   return this.usersRef;
+  // }
+
+  geUserByEmail(email: string) {
+    return this.db.object('users/' + email);
   }
 
   getCurrentUser() {
@@ -30,20 +53,22 @@ export class UserService {
     });
   }
 
-  getUsersCount() {
-    const usersListRef = this.db.list('/users', ref => ref.orderByChild('name'));
-    return usersListRef.length;
-  }
-
   createUser(value) {
 
-    this.userRef = this.db.object('/users' + );
+    this.userRef = this.db.object('/users/' + value.email.split('.').join('_'));
     this.userRef.set({
       email: value.email,
       password: value.password,
       name: value.name,
       surname: value.surname,
       phoneNumber: value.phoneNumber
+    });
+  }
+
+
+  getUserData(email) {
+    return new Promise<UserDataModel>((resolve, reject) => {
+      this.db.list('/users', ref => ref.orderByChild('email').equalTo(email));
     });
   }
 

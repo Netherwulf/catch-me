@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FirebaseUserModel} from '../shared/user.model';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -13,8 +14,8 @@ import {FirebaseUserModel} from '../shared/user.model';
 })
 export class UserComponent implements OnInit {
 
+  users: any;
   user: FirebaseUserModel = new FirebaseUserModel();
-  profileForm: FormGroup;
 
   constructor(
     public userService: UserService,
@@ -23,39 +24,63 @@ export class UserComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder
   ) {
-
+    // this.getUsersList();
+    // console.log(this.users);
   }
 
   ngOnInit(): void {
-    this.route.data.subscribe(routeData => {
-      let data = routeData['data'];
-      if (data) {
-        this.user = data;
-        this.createForm(this.user.name);
-      }
-    })
+    // this.route.data.subscribe(routeData => {
+    //   let data = routeData['data'];
+    //   if (data) {
+    //     this.user = data;
+    //     this.createForm(this.user.name);
+    //   }
+    // })
+    // this.userService.getCurrentUser()
+    //   .then(res => {
+    //     console.log(res);
+    //     const users = this.userService.getUserByEmail(res.email)
+    //       .then()
+    //     console.log(users);
+    //     this.user = users[0];
+    //   }, err => {
+    //     console.log(err);
+    //   });
+
   }
 
-  createForm(name) {
-    this.profileForm = this.fb.group({
-      name: [name, Validators.required]
+  getUsersList() {
+    this.userService.getUsersList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(users => {
+      this.users = users;
     });
   }
 
-  save(value) {
-    this.userService.updateCurrentUser(value)
-      .then(res => {
-        console.log(res);
-      }, err => console.log(err))
-  }
-
-  logout() {
-    this.authService.doLogout()
-      .then((res) => {
-        this.location.back();
-      }, (error) => {
-        console.log("Logout error", error);
-      });
-  }
+  // createForm(name) {
+  //   this.profileForm = this.fb.group({
+  //     name: [name, Validators.required]
+  //   });
+  // }
+  //
+  // save(value) {
+  //   this.userService.updateCurrentUser(value)
+  //     .then(res => {
+  //       console.log(res);
+  //     }, err => console.log(err))
+  // }
+  //
+  // logout() {
+  //   this.authService.doLogout()
+  //     .then((res) => {
+  //       this.location.back();
+  //     }, (error) => {
+  //       console.log("Logout error", error);
+  //     });
+  // }
 
 }
