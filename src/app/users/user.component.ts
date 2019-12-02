@@ -6,6 +6,9 @@ import {Location} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FirebaseUserModel} from '../shared/user.model';
 import {map} from 'rxjs/operators';
+import {Observable} from "rxjs";
+import {UserDataModel} from "../shared/user-data.model";
+import {AngularFireDatabase, AngularFireObject} from "@angular/fire/database";
 
 @Component({
   selector: 'app-user',
@@ -14,73 +17,36 @@ import {map} from 'rxjs/operators';
 })
 export class UserComponent implements OnInit {
 
-  users: any;
+  users: Observable<any[]>;
   user: FirebaseUserModel = new FirebaseUserModel();
+  userData: UserDataModel;
+
 
   constructor(
     public userService: UserService,
     public authService: AuthService,
     private route: ActivatedRoute,
     private location: Location,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public db: AngularFireDatabase
   ) {
+    this.users = db.list('users').valueChanges();
     // this.getUsersList();
     // console.log(this.users);
   }
 
   ngOnInit(): void {
-    // this.route.data.subscribe(routeData => {
-    //   let data = routeData['data'];
-    //   if (data) {
-    //     this.user = data;
-    //     this.createForm(this.user.name);
-    //   }
-    // })
-    // this.userService.getCurrentUser()
-    //   .then(res => {
-    //     console.log(res);
-    //     const users = this.userService.getUserByEmail(res.email)
-    //       .then()
-    //     console.log(users);
-    //     this.user = users[0];
-    //   }, err => {
-    //     console.log(err);
-    //   });
-
+    this.userService.getCurrentUser()
+      .then(res => {
+        const email = res.email;
+        console.log(email);
+        this.users.subscribe(user => {
+          console.log(user);
+          let usersData = user as UserDataModel[];
+          usersData = usersData.filter(userData => userData.email === email);
+          this.userData = usersData[0];
+        });
+      });
   }
-
-  getUsersList() {
-    this.userService.getUsersList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
-        )
-      )
-    ).subscribe(users => {
-      this.users = users;
-    });
-  }
-
-  // createForm(name) {
-  //   this.profileForm = this.fb.group({
-  //     name: [name, Validators.required]
-  //   });
-  // }
-  //
-  // save(value) {
-  //   this.userService.updateCurrentUser(value)
-  //     .then(res => {
-  //       console.log(res);
-  //     }, err => console.log(err))
-  // }
-  //
-  // logout() {
-  //   this.authService.doLogout()
-  //     .then((res) => {
-  //       this.location.back();
-  //     }, (error) => {
-  //       console.log("Logout error", error);
-  //     });
-  // }
 
 }

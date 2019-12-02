@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
         this.errorMessage = '';
         this.successMessage = 'Konto zostało utworzone pomyślnie';
         this.router.navigate(['/user']);
-        this.router.navigate(['/user']);
       }, err => {
         console.log(err);
         this.errorMessage = err.message;

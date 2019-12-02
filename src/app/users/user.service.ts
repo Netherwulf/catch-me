@@ -4,23 +4,30 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import {AngularFireAction, AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {UserDataModel} from '../shared/user-data.model';
+import {FirebaseListObservable} from "@angular/fire/database-deprecated";
 
 @Injectable()
 export class UserService {
 
   userRef: AngularFireObject<any>;
-  usersRef: AngularFireList<UserDataModel> = null;
+  usersRef: AngularFireList<UserDataModel[]> = null;
   // users: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
-  users: Observable<any[]>;
+  // users: Observable<any[]>;
   email: BehaviorSubject<string|null>;
+  usersList: FirebaseListObservable<any>;
+  users: Subscription;
 
   constructor(
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth) {
-    this.usersRef = db.list('/users');
+    this.usersRef = db.list('/users'); // This is of type FirebaseListObservable
+
+    // this.users = this.usersRef.subscribe(users => {
+    //   console.log(users);
+    // }); // This is of type subscription.
   }
 
   // getUsersByEmail(email: string|null) {
@@ -33,13 +40,15 @@ export class UserService {
   //   return this.users;
   // }
 
-  // getUsersList(): AngularFireList<UserDataModel> {
-  //   return this.usersRef;
-  // }
-
-  geUserByEmail(email: string) {
-    return this.db.object('users/' + email);
+  getUsersList(email: string) {
+    // return this.usersRef;
+    // this.email.next(email);
+    return this.users;
   }
+
+  // getUserByEmail(email: string) {
+  //   return this.db.object('/users/' + email.split('.').join('_')).valueChanges();
+  // }
 
   getCurrentUser() {
     return new Promise<any>((resolve, reject) => {

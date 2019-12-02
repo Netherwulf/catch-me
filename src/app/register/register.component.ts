@@ -88,7 +88,7 @@ export class RegisterComponent {
         this.userService.createUser(createdUserData);
         this.errorMessage = '';
         this.successMessage = 'Konto zostało utworzone pomyślnie';
-        this.router.navigate(['/user']);
+        this.router.navigate(['/login']);
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
