@@ -1,0 +1,51 @@
+<mat-card style="width: 20%; margin-left: auto; margin-right: auto; text-align: center;">
+  <mat-card-title>Dodaj ofertę</mat-card-title>
+  <mat-card-content style="text-align: center;">
+    <p>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Tytuł" [formControl]="title" autocomplete="off" required autofocus>
+        <mat-error *ngIf="title.invalid">{{getTitleErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Kategoria" [formControl]="category" autocomplete="off" required>
+        <mat-error *ngIf="category.invalid">{{getCategoryErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Opis" type="text" [formControl]="description"
+               autocomplete="off" required>
+        <mat-error *ngIf="description.invalid">{{getDescriptionErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Miasto" [formControl]="city" autocomplete="off" required>
+        <mat-error *ngIf="city.invalid">{{getCityErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Wymienię za..." [formControl]="exchangeList" autocomplete="off" required>
+        <mat-error *ngIf="exchangeList.invalid">{{getExchangeListErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </p>
+    <!--class="d-block mr-0 ml-auto"-->
+  </mat-card-content>
+  <mat-card-actions align="center">
+    <button mat-raised-button (click)="tryAddOffer()" [disabled]="!password.valid
+                                                          || !name.valid
+                                                          || !surname.valid
+                                                          || !email.valid
+                                                          || !phoneNumber.valid">Zarejestruj się
+    </button>
+    <div class="row" style="text-align: center">
+      <div class="col-md-4 col-md-offset-4">
+        <label class="error">{{errorMessage}}</label>
+        <label class="success">{{successMessage}}</label>
+      </div>
+    </div>
+  </mat-card-actions>
+</mat-card>

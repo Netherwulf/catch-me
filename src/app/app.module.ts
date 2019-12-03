@@ -28,6 +28,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {MatListModule} from '@angular/material';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import { AddOfferComponent } from './add-offer/add-offer.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     HeaderComponent,
     RegisterComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    AddOfferComponent
   ],
   imports: [
     BrowserModule,

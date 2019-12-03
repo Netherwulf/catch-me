@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {Router} from '@angular/router';
 
@@ -10,11 +10,16 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   opened: boolean;
+  @Output() public sidenavToggle = new EventEmitter();
 
   constructor(public authService: AuthService, public router: Router) {
   }
 
   ngOnInit() {
+  }
+
+  public onToggleSidenav = () => {
+    this.sidenavToggle.emit();
   }
 
   onSelectSignIn() {
