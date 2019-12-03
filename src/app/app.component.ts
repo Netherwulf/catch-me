@@ -28,4 +28,9 @@ export class AppComponent {
     this.router.navigate(['/user']);
     this.sideNav.close();
   }
+
+  public onAddOfferSelect() {
+    this.router.navigate(['/addOffer']);
+    this.sideNav.close();
+  }
 }

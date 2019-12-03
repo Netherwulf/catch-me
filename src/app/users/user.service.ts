@@ -14,6 +14,7 @@ export class UserService {
 
   userRef: AngularFireObject<any>;
   usersRef: AngularFireList<UserDataModel[]> = null;
+  offersRef;
   // users: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
   // users: Observable<any[]>;
   email: BehaviorSubject<string|null>;
@@ -71,6 +72,19 @@ export class UserService {
       name: value.name,
       surname: value.surname,
       phoneNumber: value.phoneNumber
+    });
+  }
+
+  createOffer(value, index: string) {
+
+    this.offersRef = this.db.object('/offers/' + index);
+    this.offersRef.set({
+      title: value.title,
+      category: value.category,
+      description: value.description,
+      city: value.city,
+      exchangeList: value.exchangeList,
+      userId: value.userId
     });
   }
 
