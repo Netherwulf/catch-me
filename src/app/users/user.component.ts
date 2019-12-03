@@ -54,4 +54,9 @@ export class UserComponent implements OnInit {
     this.router.navigate(['myOffers']);
   }
 
+  onOpinionsGivenView() {
+  }
+
+  onOpinionsReceiveView() {}
+
 }
