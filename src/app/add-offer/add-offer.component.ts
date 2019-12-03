@@ -19,6 +19,7 @@ export class AddOfferComponent implements OnInit {
   successMessage = '';
   hide = true;
   offers: Observable<any[]>;
+  categories: string[];
 
   constructor(
     public db: AngularFireDatabase,
@@ -28,6 +29,7 @@ export class AddOfferComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.offers = db.list('offers').valueChanges();
+    this.categories = ['Figurki', 'Gry planszowe', 'Plakaty'];
     // this.createForm();
   }
 

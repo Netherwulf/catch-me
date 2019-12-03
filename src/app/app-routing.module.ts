@@ -6,6 +6,7 @@ import {UserResolver} from './users/user.resolver';
 import {UserComponent} from './users/user.component';
 import {LoginComponent} from './login/login.component';
 import {AddOfferComponent} from './add-offer/add-offer.component';
+import {MyOffersComponent} from './users/my-offers/my-offers.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserComponent, resolve: {data: UserResolver}},
-  {path: 'addOffer', component: AddOfferComponent},
+  {path: 'myOffers', component: MyOffersComponent},
+  {path: 'addOffer', component: AddOfferComponent}
 ];
 
 @NgModule({

@@ -29,6 +29,8 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {MatListModule} from '@angular/material';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { AddOfferComponent } from './add-offer/add-offer.component';
+import {MatSelectModule} from "@angular/material/select";
+import { MyOffersComponent } from './users/my-offers/my-offers.component';
 
 @NgModule({
   declarations: [
@@ -37,27 +39,29 @@ import { AddOfferComponent } from './add-offer/add-offer.component';
     RegisterComponent,
     UserComponent,
     LoginComponent,
-    AddOfferComponent
+    AddOfferComponent,
+    MyOffersComponent
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    // imports firebase/auth, only needed for auth features
-  ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+        AngularFireAuthModule,
+        AngularFireDatabaseModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatSelectModule,
+        // imports firebase/auth, only needed for auth features
+    ],
   providers: [AuthService, AngularFirestoreModule, UserService, UserResolver, AuthGuard],
   bootstrap: [AppComponent]
 })

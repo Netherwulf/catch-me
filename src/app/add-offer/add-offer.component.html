@@ -9,8 +9,12 @@
     </p>
     <p>
       <mat-form-field>
-        <input matInput type="text" placeholder="Kategoria" [formControl]="category" autocomplete="off" required>
-        <mat-error *ngIf="category.invalid">{{getCategoryErrorMessage()}}</mat-error>
+        <mat-label>Kategoria</mat-label>
+        <mat-select [formControl]="category" required>
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{category}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </p>
     <p>

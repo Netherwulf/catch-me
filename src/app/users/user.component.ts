@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from './user.service';
 import {AuthService} from '../auth/auth.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FirebaseUserModel} from '../shared/user.model';
 import {map} from 'rxjs/operators';
-import {Observable} from "rxjs";
-import {UserDataModel} from "../shared/user-data.model";
-import {AngularFireDatabase, AngularFireObject} from "@angular/fire/database";
+import {Observable} from 'rxjs';
+import {UserDataModel} from '../shared/user-data.model';
+import {AngularFireDatabase, AngularFireObject} from '@angular/fire/database';
 
 @Component({
   selector: 'app-user',
@@ -28,7 +28,8 @@ export class UserComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
-    public db: AngularFireDatabase
+    public db: AngularFireDatabase,
+    public router: Router
   ) {
     this.users = db.list('users').valueChanges();
     // this.getUsersList();
@@ -47,6 +48,10 @@ export class UserComponent implements OnInit {
           this.userData = usersData[0];
         });
       });
+  }
+
+  onOffersView() {
+    this.router.navigate(['myOffers']);
   }
 
 }

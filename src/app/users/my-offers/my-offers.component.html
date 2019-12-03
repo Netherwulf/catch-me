@@ -1,0 +1,24 @@
+<mat-card class="my-offers-card">
+  <mat-card-header>
+    <mat-card-title>Moje oferty</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+  <mat-list>
+<!--    <h3 mat-subheader>Moje oferty</h3>-->
+    <mat-list-item *ngFor="let myOffer of myOffers">
+      <mat-icon mat-list-icon>assignment</mat-icon>
+      <h4 mat-line><b>{{myOffer.title}}</b></h4>
+      <p mat-line> {{myOffer.category}} </p>
+      <p mat-line> {{myOffer.description}} </p>
+      <p mat-line> {{myOffer.city}} </p>
+      <p mat-line> <b>Zamienię za:</b></p>
+      <p mat-line class="exchangeList" *ngFor="let exchangeItem of myOffer.exchangeList">* {{exchangeItem}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+  </mat-list>
+  </mat-card-content>
+  <mat-card-actions align="start">
+    <button mat-raised-button (click)="onBackToUserPage()">Powrót</button>
+  </mat-card-actions>
+</mat-card>
