@@ -33,4 +33,9 @@ export class AppComponent {
     this.router.navigate(['/addOffer']);
     this.sideNav.close();
   }
+
+  public onSearchOffersSelect() {
+    this.router.navigate(['/searchOffers']);
+    this.sideNav.close();
+  }
 }

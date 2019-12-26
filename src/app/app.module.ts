@@ -31,6 +31,10 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import {MatSelectModule} from "@angular/material/select";
 import { MyOffersComponent } from './users/my-offers/my-offers.component';
+import { SearchOffersComponent } from './search-offers/search-offers.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import { OfferDetailsComponent } from './offer-details/offer-details.component';
+import { SearchUsersComponent } from './search-users/search-users.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,10 @@ import { MyOffersComponent } from './users/my-offers/my-offers.component';
     UserComponent,
     LoginComponent,
     AddOfferComponent,
-    MyOffersComponent
+    MyOffersComponent,
+    SearchOffersComponent,
+    OfferDetailsComponent,
+    SearchUsersComponent
   ],
     imports: [
         BrowserModule,
@@ -60,6 +67,7 @@ import { MyOffersComponent } from './users/my-offers/my-offers.component';
         MatListModule,
         MatSidenavModule,
         MatSelectModule,
+        MatGridListModule,
         // imports firebase/auth, only needed for auth features
     ],
   providers: [AuthService, AngularFirestoreModule, UserService, UserResolver, AuthGuard],

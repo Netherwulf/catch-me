@@ -7,6 +7,8 @@ import {UserComponent} from './users/user.component';
 import {LoginComponent} from './login/login.component';
 import {AddOfferComponent} from './add-offer/add-offer.component';
 import {MyOffersComponent} from './users/my-offers/my-offers.component';
+import {SearchOffersComponent} from "./search-offers/search-offers.component";
+import {OfferDetailsComponent} from "./offer-details/offer-details.component";
 
 
 const routes: Routes = [
@@ -15,7 +17,9 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserComponent, resolve: {data: UserResolver}},
   {path: 'myOffers', component: MyOffersComponent},
-  {path: 'addOffer', component: AddOfferComponent}
+  {path: 'addOffer', component: AddOfferComponent},
+  {path: 'searchOffers', component: SearchOffersComponent},
+  {path: 'offerDetails', component: OfferDetailsComponent}
 ];
 
 @NgModule({

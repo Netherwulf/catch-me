@@ -1,0 +1,48 @@
+.header {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.right-card {
+  min-width: 80%;
+  min-height: 287.5px;
+  max-width: 83%;
+  margin-bottom: 50px;
+  float: right;
+  text-align: center;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+.placeholder-label {
+  text-align: center;
+  margin-top: 50%;
+  height: 100%;
+  width: 1100px;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  left: 50%;
+}
+
+.left-card {
+  max-width: 1000px;
+  margin-bottom: 50px;
+  float: left;
+}
+
+.row {
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}

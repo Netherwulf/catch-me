@@ -47,8 +47,7 @@ export class AddOfferComponent implements OnInit {
   exchangeList = new FormControl(null);
 
   getTitleErrorMessage() {
-    return this.title.hasError('required') ? 'Pole wymagane' :
-      this.title.hasError('email') ? 'Błędny e-mail' : '';
+    return this.title.hasError('required') ? 'Pole wymagane' : '';
   }
 
   getCategoryErrorMessage() {
@@ -64,7 +63,7 @@ export class AddOfferComponent implements OnInit {
   }
 
   getExchangeListErrorMessage() {
-    return this.exchangeList.hasError('minlength') ? 'Numer telefonu jest za krótki' : '';
+    return this.exchangeList.hasError('required') ? 'Pole wymagane' : '';
   }
 
   tryAddOffer() {

@@ -32,7 +32,7 @@
     </p>
     <p>
       <mat-form-field>
-        <input matInput type="text" placeholder="Wymienię za..." [formControl]="exchangeList" autocomplete="off" required>
+        <input matInput type="text" placeholder="Rzecz do wymiany 1, 2, 3..." [formControl]="exchangeList" autocomplete="off" required>
         <mat-error *ngIf="exchangeList.invalid">{{getExchangeListErrorMessage()}}</mat-error>
       </mat-form-field>
     </p>

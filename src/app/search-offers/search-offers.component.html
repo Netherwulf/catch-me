@@ -1,0 +1,67 @@
+<!--<mat-card id="moth-card">-->
+<mat-card class="inline-block left-card" style="margin-right: 0.5%;">
+    <mat-card-title>Kryteria wyszukiwania</mat-card-title>
+    <mat-card-content style="text-align: center;">
+      <p>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Tytuł" [formControl]="title" autocomplete="off" autofocus>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Kategoria</mat-label>
+          <mat-select [formControl]="category">
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{category}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Miasto" [formControl]="city" autocomplete="off">
+        </mat-form-field>
+      </p>
+      <!--class="d-block mr-0 ml-auto"-->
+    </mat-card-content>
+    <mat-card-actions align="center">
+      <button mat-raised-button (click)="tryFindOffers()" [disabled]="title.value === null
+                                                            && category.value === null
+                                                            && city.value === null">Szukaj
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="inline-block right-card" style="margin-right: 0%">
+    <mat-card-title>Wyniki wyszukiwania</mat-card-title>
+    <mat-card-content>
+      <ng-template class="placeholder-label" [ngIf]="foundOffers.length === 0">
+        <h2>Zmień kryteria wyszukiwania po lewej stronie</h2>
+      </ng-template>
+      <ng-template [ngIf]="foundOffers.length !== 0">
+        <mat-grid-list  style="text-align: left;" cols="4">
+          <!--    <h3 mat-subheader>Moje oferty</h3>-->
+          <mat-grid-tile *ngFor="let foundOffer of foundOffers" (click)="onOfferSelected(foundOffer)">
+            <div>
+            <mat-icon mat-list-icon>assignment</mat-icon>
+            <h4 mat-line><b>{{foundOffer.title}}</b></h4>
+            <p mat-line> {{foundOffer.category}} </p>
+            <p mat-line> {{foundOffer.city}} </p>
+            <p mat-line><b>Zamienię za:</b></p>
+            <p mat-line class="exchangeList" *ngFor="let exchangeItem of foundOffer.exchangeList">* {{exchangeItem}}</p>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+
+  <!--  <mat-card class="inline-block">-->
+  <!--    <mat-card-title>Wyniki wyszukiwania</mat-card-title>-->
+  <!--    <mat-card-content style="">-->
+  <!--  -->
+  <!--    </mat-card-content>-->
+  <!--    <mat-card-actions align="left">-->
+  <!--  -->
+  <!--    </mat-card-actions>-->
+  <!--  </mat-card>-->
+<!--</mat-card>-->

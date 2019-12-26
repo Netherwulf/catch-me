@@ -2,7 +2,7 @@
   <mat-card-title>Logowanie</mat-card-title>
   <mat-card-content style="text-align: center;">
     <p>
-      <mat-form-field>
+      <mat-form-field autofocus>
         <input matInput type="email" placeholder="E-mail" [formControl]="email" autocomplete="off" required autofocus>
         <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
       </mat-form-field>
