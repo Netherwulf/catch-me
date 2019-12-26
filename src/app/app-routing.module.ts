@@ -9,6 +9,9 @@ import {AddOfferComponent} from './add-offer/add-offer.component';
 import {MyOffersComponent} from './users/my-offers/my-offers.component';
 import {SearchOffersComponent} from "./search-offers/search-offers.component";
 import {OfferDetailsComponent} from "./offer-details/offer-details.component";
+import {SearchUsersComponent} from "./search-users/search-users.component";
+import {OtherUserComponent} from "./other-user/other-user.component";
+import {AddOpinionComponent} from "./add-opinion/add-opinion.component";
 
 
 const routes: Routes = [
@@ -19,7 +22,10 @@ const routes: Routes = [
   {path: 'myOffers', component: MyOffersComponent},
   {path: 'addOffer', component: AddOfferComponent},
   {path: 'searchOffers', component: SearchOffersComponent},
-  {path: 'offerDetails', component: OfferDetailsComponent}
+  {path: 'offerDetails', component: OfferDetailsComponent},
+  {path: 'searchUsers', component: SearchUsersComponent},
+  {path: 'otherUser', component: OtherUserComponent},
+  {path: 'addOpinion', component: AddOpinionComponent}
 ];
 
 @NgModule({

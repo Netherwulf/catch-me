@@ -35,6 +35,8 @@ import { SearchOffersComponent } from './search-offers/search-offers.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { SearchUsersComponent } from './search-users/search-users.component';
+import { OtherUserComponent } from './other-user/other-user.component';
+import { AddOpinionComponent } from './add-opinion/add-opinion.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { SearchUsersComponent } from './search-users/search-users.component';
     MyOffersComponent,
     SearchOffersComponent,
     OfferDetailsComponent,
-    SearchUsersComponent
+    SearchUsersComponent,
+    OtherUserComponent,
+    AddOpinionComponent
   ],
     imports: [
         BrowserModule,

@@ -1,0 +1,36 @@
+<mat-card class="other-user-card">
+  <mat-card-header>
+    <mat-card-title>{{ user.name }} {{ user.surname }}</mat-card-title>
+    <mat-card-subtitle>Dane użytkownika</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <mat-list>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Imię</h3>
+        <mat-list-item>
+          <h4 mat-line>{{user.name}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Nazwisko</h3>
+        <mat-list-item>
+          <h4 mat-line>{{user.surname}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Adres e-mail</h3>
+        <mat-list-item>
+          <h4 mat-line>{{user.email}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Numer telefonu</h3>
+        <mat-list-item>
+          <h4 mat-line>{{user.phoneNumber}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="left">
+    <button mat-raised-button (click)="onOpinionAdd()">Wystaw opinię</button>
+  </mat-card-actions>
+</mat-card>

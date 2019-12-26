@@ -24,7 +24,7 @@ export class OfferDetailsComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) {
     this.users = db.list('users').valueChanges();
-    this.offer = this.router.getCurrentNavigation().extras.state.offer
+    this.offer = this.router.getCurrentNavigation().extras.state.offer;
   }
 
   ngOnInit() {

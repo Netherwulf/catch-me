@@ -25,31 +25,11 @@ export class UserService {
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth) {
     this.usersRef = db.list('/users'); // This is of type FirebaseListObservable
-
-    // this.users = this.usersRef.subscribe(users => {
-    //   console.log(users);
-    // }); // This is of type subscription.
   }
-
-  // getUsersByEmail(email: string|null) {
-  //   return this.email.next(email);
-  //   // return this.users;
-  // }
-
-  // getUserByEmail(email) {
-  //   this.users = this.db.list('items');
-  //   return this.users;
-  // }
 
   getUsersList(email: string) {
-    // return this.usersRef;
-    // this.email.next(email);
     return this.users;
   }
-
-  // getUserByEmail(email: string) {
-  //   return this.db.object('/users/' + email.split('.').join('_')).valueChanges();
-  // }
 
   getCurrentUser() {
     return new Promise<any>((resolve, reject) => {
@@ -76,7 +56,6 @@ export class UserService {
   }
 
   createOffer(value, index: string) {
-
     this.offersRef = this.db.object('/offers/' + index);
     this.offersRef.set({
       title: value.title,
@@ -88,6 +67,15 @@ export class UserService {
     });
   }
 
+  createOpinion(value, index: string) {
+    this.offersRef = this.db.object('/opinions/' + index);
+    this.offersRef.set({
+      text: value.text,
+      grade: value.grade,
+      authorId: value.authorId,
+      recipientId: value.recipientId
+    });
+  }
 
   getUserData(email) {
     return new Promise<UserDataModel>((resolve, reject) => {

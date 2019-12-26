@@ -1,1 +1,56 @@
-<p>search-users works!</p>
+<!--<mat-card id="moth-card">-->
+<mat-card class="inline-block left-card" style="margin-right: 0.5%;">
+  <mat-card-title>Kryteria wyszukiwania</mat-card-title>
+  <mat-card-content style="text-align: center;">
+    <p>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Adres e-mail" [formControl]="email" autocomplete="off" autofocus>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Numer telefonu" [formControl]="phoneNumber" autocomplete="off">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Imię" [formControl]="name" autocomplete="off">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Nazwisko" [formControl]="surname" autocomplete="off">
+      </mat-form-field>
+    </p>
+    <!--class="d-block mr-0 ml-auto"-->
+  </mat-card-content>
+  <mat-card-actions align="center">
+    <button mat-raised-button (click)="tryFindUsers()" [disabled]="email.value === null
+                                                            && phoneNumber.value === null
+                                                            && name.value === null
+                                                            && surname.value === null">Szukaj
+    </button>
+  </mat-card-actions>
+</mat-card>
+<mat-card class="inline-block right-card" style="margin-right: 0%">
+  <mat-card-title>Wyniki wyszukiwania użytkowników</mat-card-title>
+  <mat-card-content>
+    <ng-template class="placeholder-label" [ngIf]="foundUsers.length === 0">
+      <h2>Zmień kryteria wyszukiwania po lewej stronie</h2>
+    </ng-template>
+    <ng-template [ngIf]="foundUsers.length !== 0">
+      <mat-grid-list  style="text-align: left;" cols="5">
+        <!--    <h3 mat-subheader>Moje oferty</h3>-->
+        <mat-grid-tile *ngFor="let foundUser of foundUsers" (click)="onUserSelected(foundUser)">
+          <div>
+            <mat-icon mat-list-icon>face</mat-icon>
+            <h4 mat-line><b>{{foundUser.email}}</b></h4>
+            <p mat-line> {{foundUser.name}} </p>
+            <p mat-line> {{foundUser.surname}} </p>
+            <p mat-line> {{foundUser.phoneNumber}} </p>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </ng-template>
+  </mat-card-content>
+</mat-card>
