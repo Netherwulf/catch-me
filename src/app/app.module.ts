@@ -38,6 +38,7 @@ import { SearchUsersComponent } from './search-users/search-users.component';
 import { OtherUserComponent } from './other-user/other-user.component';
 import { AddOpinionComponent } from './add-opinion/add-opinion.component';
 import { MyOpinionsComponent } from './users/my-opinions/my-opinions.component';
+import { OpinionsReceivedComponent } from './users/opinions-received/opinions-received.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MyOpinionsComponent } from './users/my-opinions/my-opinions.component';
     SearchUsersComponent,
     OtherUserComponent,
     AddOpinionComponent,
-    MyOpinionsComponent
+    MyOpinionsComponent,
+    OpinionsReceivedComponent
   ],
     imports: [
         BrowserModule,

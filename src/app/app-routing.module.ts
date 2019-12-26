@@ -13,6 +13,7 @@ import {SearchUsersComponent} from "./search-users/search-users.component";
 import {OtherUserComponent} from "./other-user/other-user.component";
 import {AddOpinionComponent} from "./add-opinion/add-opinion.component";
 import {MyOpinionsComponent} from "./users/my-opinions/my-opinions.component";
+import {OpinionsReceivedComponent} from "./users/opinions-received/opinions-received.component";
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'searchUsers', component: SearchUsersComponent},
   {path: 'otherUser', component: OtherUserComponent},
   {path: 'addOpinion', component: AddOpinionComponent},
-  {path: 'myOpinions', component: MyOpinionsComponent}
+  {path: 'myOpinions', component: MyOpinionsComponent},
+  {path: 'opinionsReceived', component: OpinionsReceivedComponent}
 ];
 
 @NgModule({
