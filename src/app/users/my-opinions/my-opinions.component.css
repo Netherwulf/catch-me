@@ -6,10 +6,12 @@
   margin-left: 60px;
 }
 
-.my-offers-card {
+.my-opinions-card {
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
 }
 
 ::ng-deep .mat-line{

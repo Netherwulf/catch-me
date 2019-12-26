@@ -54,7 +54,8 @@ export class UserComponent implements OnInit {
     this.router.navigate(['myOffers']);
   }
 
-  onOpinionsGivenView() {
+  onMyOpinionsView() {
+    this.router.navigate(['myOpinions'], {'state': {'user': this.userData}})
   }
 
   onOpinionsReceiveView() {}

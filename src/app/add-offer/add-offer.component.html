@@ -19,8 +19,8 @@
     </p>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Opis" type="text" [formControl]="description"
-               autocomplete="off" required>
+        <textarea matInput placeholder="Opis" type="text" [formControl]="description"
+                  autocomplete="off" required></textarea>
         <mat-error *ngIf="description.invalid">{{getDescriptionErrorMessage()}}</mat-error>
       </mat-form-field>
     </p>

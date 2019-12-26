@@ -12,6 +12,7 @@ import {OfferDetailsComponent} from "./offer-details/offer-details.component";
 import {SearchUsersComponent} from "./search-users/search-users.component";
 import {OtherUserComponent} from "./other-user/other-user.component";
 import {AddOpinionComponent} from "./add-opinion/add-opinion.component";
+import {MyOpinionsComponent} from "./users/my-opinions/my-opinions.component";
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'offerDetails', component: OfferDetailsComponent},
   {path: 'searchUsers', component: SearchUsersComponent},
   {path: 'otherUser', component: OtherUserComponent},
-  {path: 'addOpinion', component: AddOpinionComponent}
+  {path: 'addOpinion', component: AddOpinionComponent},
+  {path: 'myOpinions', component: MyOpinionsComponent}
 ];
 
 @NgModule({
