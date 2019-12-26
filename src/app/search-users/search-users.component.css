@@ -51,3 +51,8 @@ mat-card-title {
   word-wrap: break-word !important;
   white-space: pre-wrap !important;
 }
+
+mat-grid-tile:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.2);
+}
